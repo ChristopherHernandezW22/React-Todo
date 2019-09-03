@@ -14,11 +14,12 @@ class TodoForm extends React.Component{
 
     handleSubmit = event => {
         event.preventDefault();
+        this.props.addTodo(this.state.newtodo);
     }
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <input type="text" 
                         name="newtodo"
                         placeholder="...todo"
