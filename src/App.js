@@ -10,7 +10,7 @@ const todoData = [
   {
     task: 'Bake Cookies',
     id: 1528817084358,
-    completed: false
+    completed: true
   }
 ];
 
@@ -24,12 +24,25 @@ class App extends React.Component {
       todos: todoData,
     };
   }
+
+  toggleCompleted = (id) => {
+    this.state.todos.map(todo => {
+      if (id === todo.id) {
+        return {...todo, completed: !todo.completed};
+      } else {
+        return todo;
+      }
+    });
+  }
+
   render() {
     console.log(this.state);
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList todos={this.state.todos}/>
+        <TodoList todos={this.state.todos}
+                  toggleCompleted={this.toggleCompleted}
+        />
       </div>
     );
   }
